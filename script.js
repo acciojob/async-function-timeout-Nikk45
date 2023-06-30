@@ -1,19 +1,17 @@
-//your JS code here. If required.
+async function showMessageWithDelay() {
+  const textInput = document.getElementById('text');
+  const delayInput = document.getElementById('delay');
+  const outputDiv = document.getElementById('output');
 
-async function callme(){
-	let text = document.getElementById('text').value;
-	let delayValue = document.getElementById('delay').value;
-	let delay = Number(delayValue);
-	let value = await new Promise(resolve=>{
-		setTimeout(()=>{
-			resolve(text);
-		},delay)
-	})
-	let div = document.getElementById('output');
-	div.innerText = "value";
+  const text = textInput.value;
+  const delay = parseInt(delayInput.value);
+
+  if (text && !isNaN(delay)) {
+    await delayInMilliseconds(delay);
+    outputDiv.innerText = text;
+  }
 }
 
-// alert(text);
-
-
-
+function delayInMilliseconds(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
