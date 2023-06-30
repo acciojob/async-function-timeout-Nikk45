@@ -10,7 +10,7 @@ async function callme(){
 		},delay)
 	})
 	let div = document.getElementById('output');
-	div.innerText = value;
+	div.innerText = "value";
 }
 
 // alert(text);
