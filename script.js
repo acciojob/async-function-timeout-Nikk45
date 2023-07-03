@@ -1,30 +1,25 @@
+// Get references to the HTML elements
 const textInput = document.getElementById('text');
 const delayInput = document.getElementById('delay');
 const btn = document.getElementById('btn');
 const outputDiv = document.getElementById('output');
 
-// Add click event listener to the button
-btn.addEventListener('click', showMessage);
-
-// Function to display the message after a delay
-async function showMessage() {
+// Define the async function
+async function showMessageWithDelay() {
+  // Get the text and delay values from the inputs
   const text = textInput.value;
-  const delay = parseInt(delayInput.value, 10);
+  const delay = parseInt(delayInput.value);
 
-  // Validate input
-  if (text.trim() === '' || isNaN(delay) || delay <= 0) {
-    outputDiv.textContent = 'Invalid input';
-    return;
-  }
-
-  // Delay using a Promise
-  function delayPromise(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
+  // Clear the input values
+  textInput.value = '';
+  delayInput.value = '';
 
   // Wait for the specified delay
-  await delayPromise(delay);
+  await new Promise(resolve => setTimeout(resolve, delay));
 
-  // Display the message
-  outputDiv.textContent = text;
+  // Display the message on the webpage
+  outputDiv.innerText = text;
 }
+
+// Add event listener to the button
+btn.addEventListener('click', showMessageWithDelay);
